@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Signature Requests",
+    "path": "{version}/signature_request/list",
+    "rel": "signature-requests",
+    "templated": true
+  },
+  {
+    "name": "Signature Request",
+    "path": "{version}/signature_request/{id}",
+    "rel": "signature-request",
+    "templated": true
+  }
+]
