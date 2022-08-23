@@ -12,6 +12,11 @@ task default: :spec
 task(:configure) do
   require 'hello_sign/client'
 
+  HelloSign::Client.configure do |c|
+    c.logger = HelloSign::Logger.new(File.expand_path('../log/rake.log', __FILE__))
+    c.request_logger = HelloSign::Logger.new(File.expand_path('../log/requests.log', __FILE__))
+  end
+
   Dotenv.load
 end
 
