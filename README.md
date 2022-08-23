@@ -121,7 +121,7 @@ p3p: "CP=\"NOP3PPOLICY\""
 The requests will all return a delegated response object (`Faraday` as
 the default adapter)
 
-```
+```ruby
 >> response = HelloSign::Requests::SignatureRequests.retrieve('26d7fd1303666b4697a9b1a67a948aa8a81a7686')
 => #<Faraday::Response:0x00007fa23c0ed2e8
 
@@ -182,6 +182,21 @@ domain models.
 
 >> record = HelloSign::Models::SignatureRequest.retrieve('26d7fd1303666b4697a9b1a67a948aa8a81a7686')
 => #<HelloSign::Models::SignatureRequest:0x00007fa25d91d9b0
+
+>> record.id
+=> "26d7fd1303666b4697a9b1a67a948aa8a81a7686"
+>> record.title
+=> "NDA with Acme Co."
+>> record.subject
+=> "The NDA we talked about"
+>> record.message
+=> "Please sign this NDA and then we can discuss more. Let me know if you\nhave any questions."
+>> record.complete?
+=> false
+>> record.declined?
+=> false
+>> record.error?
+=> false
 ```
 
 ### Loggers
