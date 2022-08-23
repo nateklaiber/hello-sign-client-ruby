@@ -6,3 +6,5 @@
 .ruby-gemset
 
 .rspec
+
+log/*.log
