@@ -8,3 +8,6 @@
 .rspec
 
 log/*.log
+
+.yardoc
+doc/*
