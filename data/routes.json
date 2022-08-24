@@ -1,7 +1,7 @@
 [
   {
     "name": "Signature Requests",
-    "path": "{version}/signature_request/list",
+    "path": "{version}/signature_request/list{?query}",
     "rel": "signature-requests",
     "templated": true
   },

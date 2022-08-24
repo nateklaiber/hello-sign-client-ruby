@@ -3,14 +3,25 @@ module HelloSign
     class SignatureRequests
       include Enumerable
 
+      # Returns an instance of the signature requests collection
+      #
+      # @param collection [Array]
+      #
+      # @return [HelloSign::Models::SignatureRequests]
       def initialize(collection=[])
         @collection = Array(collection)
       end
 
+      # Implement Enumerable
       def each(&block)
         internal_collection.each(&block)
       end
 
+      # Helper method to return the list from the request
+      #
+      # @param params [Hash]
+      #
+      # @return [HelloSign::Requests::SignatureRequests]
       def self.list(params={})
         request = HelloSign::Requests::SignatureRequests.list(params)
 
@@ -24,6 +35,12 @@ module HelloSign
         nil
       end
 
+      # Helper method to retrieve the instance from the request
+      #
+      # @param id [String]
+      # @param params [Hash]
+      #
+      # @return [HelloSign::Models::SignatureRequest,NilClass]
       def self.retrieve(id, params={})
         request = HelloSign::Requests::SignatureRequests.retrieve(id, params)
 
@@ -35,6 +52,27 @@ module HelloSign
         end
 
         nil
+      end
+
+      # Helper method to retrieve the instance
+      #
+      # @param id [String]
+      # @param params [Hash]
+      #
+      # @raises [HelloSign::Errors::RecordNotFoundError]
+      #
+      # @return [HelloSign::Models::SignatureRequest]
+      def self.retrieve!(id, params={})
+        record = self.retrieve(id, params)
+
+        if record.nil?
+          message = "Unable to find a record for ID: %s" % [id]
+
+          HelloSign::Client.logger.error(message)
+          raise HelloSign::Errors::RecordNotFoundError.new(message)
+        end
+
+        record
       end
 
       private

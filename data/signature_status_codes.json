@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Error Text Tag",
+    "key_name": "error_text_tag"
+  },
+  {
+    "name": "Awaiting Signature",
+    "key_name": "awaiting_signature"
+  },
+  {
+    "name": "Signed",
+    "key_name": "signed"
+  }
+]

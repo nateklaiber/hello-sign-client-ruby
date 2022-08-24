@@ -14,6 +14,9 @@ require 'hello_sign/configuration'
 require 'hello_sign/connection'
 require 'hello_sign/response'
 
+require 'hello_sign/email_address'
+require 'hello_sign/phone_number'
+
 require 'hello_sign/utilities'
 
 require 'hello_sign/file_store'
@@ -158,6 +161,13 @@ module HelloSign
     # @return [String] API URI
     def self.api_host
       self.configuration.api_host
+    end
+
+    # Helper method to return the logger
+    #
+    # @return [Logger]
+    def self.logger
+      self.configuration.logger
     end
   end
 end

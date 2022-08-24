@@ -16,5 +16,5 @@ end
 # require "pry"
 # Pry.start
 
-require "irb"
-IRB.start(__FILE__)
+require "rake"
+Rake.application.run
