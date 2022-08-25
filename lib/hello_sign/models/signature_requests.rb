@@ -54,6 +54,26 @@ module HelloSign
         nil
       end
 
+      # Helper method to create a new record from the request
+      #
+      #
+      # @param record_attributes [Hash]
+      # @param params [Hash]
+      #
+      # @return [HelloSign::Models::SignatureRequest,NilClass]
+      def self.create(record_attributes={}, params={}, &block)
+        request = HelloSign::Requests::SignatureRequests.create(record_attributes, params, &block)
+
+        request.on(:success) do |resp|
+          response_body = resp.body
+          model_body    = response_body.fetch('signature_request', {})
+
+          return HelloSign::Models::SignatureRequest.new(model_body)
+        end
+
+        nil
+      end
+
       # Helper method to retrieve the instance
       #
       # @param id [String]

@@ -6,6 +6,12 @@
     "templated": true
   },
   {
+    "name": "Signature Request - Send",
+    "path": "{version}/signature_request/send",
+    "rel": "signature-requests-send",
+    "templated": true
+  },
+  {
     "name": "Signature Request",
     "path": "{version}/signature_request/{id}",
     "rel": "signature-request",
