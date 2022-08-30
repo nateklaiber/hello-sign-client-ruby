@@ -16,8 +16,10 @@ require 'hello_sign/response'
 
 require 'hello_sign/email_address'
 require 'hello_sign/phone_number'
+require 'hello_sign/resource_io'
 
 require 'hello_sign/utilities'
+require 'hello_sign/extensions'
 
 require 'hello_sign/file_store'
 
@@ -52,7 +54,7 @@ module HelloSign
     # Helper method to access the Connection object
     #
     # @return [HelloSign::Connection] Faraday Response Delegator
-    def self.connection
+    def self.connection(&block)
       @connection ||= HelloSign::Connection.new(url: self.configuration.api_host) do |builder|
         builder.response(:json, content_type: /\bjson/)
 
@@ -62,6 +64,14 @@ module HelloSign
 
         # Inject Authorization
         builder.basic_auth(self.configuration.api_key, nil)
+
+        if block_given?
+          if block.arity == 1
+            yield(builder)
+          else
+            builder.instance_eval(&block)
+          end
+        end
       end
 
       # Merge default headers
